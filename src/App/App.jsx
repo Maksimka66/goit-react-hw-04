@@ -3,7 +3,7 @@ import ImageGallery from "../ImageGallery/ImageGallery";
 
 import galleryRequest from "../articles-api";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./App.css";
 
@@ -11,6 +11,7 @@ function App() {
   return (
     <>
       <SearchBar onSubmit={galleryRequest} />
+      <ImageGallery />
     </>
   );
 }

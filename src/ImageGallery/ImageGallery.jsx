@@ -1,7 +1,6 @@
-export default function ImageGallery() {
+export default function ImageGallery({ servResponse }) {
   return (
     <ul>
-      {/* Набір елементів списку із зображеннями */}
       <li>
         <div>
           <img src="" alt="" />
