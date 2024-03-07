@@ -1,10 +1,16 @@
+import SearchBar from "../SearchBar/SearchBar";
+import ImageGallery from "../ImageGallery/ImageGallery";
+
 import { useState } from "react";
-import reactLogo from "../assets/react.svg";
-import viteLogo from "/vite.svg";
+
 import "./App.css";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <SearchBar />
+    </>
+  );
 }
 
 export default App;
