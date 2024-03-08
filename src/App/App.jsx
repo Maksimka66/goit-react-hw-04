@@ -8,10 +8,14 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+  const [response, setResponse] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
   return (
     <>
       <SearchBar onSubmit={galleryRequest} />
-      <ImageGallery />
+      <ImageGallery servResponse={response} />
     </>
   );
 }

@@ -1,11 +1,16 @@
+import ImageCard from "../ImageCard/ImageCard";
+
 export default function ImageGallery({ servResponse }) {
   return (
     <ul>
-      <li>
-        <div>
-          <img src="" alt="" />
-        </div>
-      </li>
+      {servResponse.map((photo) => (
+        <li key={photo.id}>
+          <ImageCard
+            path={photo.urls.small}
+            description={photo.alt_description}
+          />
+        </li>
+      ))}
     </ul>
   );
 }

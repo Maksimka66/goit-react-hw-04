@@ -3,7 +3,8 @@ import toast, { Toaster } from "react-hot-toast";
 export default function SearchBar({ onSubmit }) {
   const submitForm = (e) => {
     e.preventDefault();
-    if (e.target.elements.search.value.trim() === "") {
+    const inputValue = e.target.elements.search.value;
+    if (inputValue.trim() === "") {
       return (
         <div>
           {toast.error("All fields must be filled!")}
@@ -11,7 +12,7 @@ export default function SearchBar({ onSubmit }) {
         </div>
       );
     }
-    onSubmit(e.target.elements.search.value.trim());
+    onSubmit(inputValue.trim());
     e.currentTarget.reset();
   };
 
