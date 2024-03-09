@@ -13,12 +13,16 @@ import "./App.css";
 
 function App() {
   const [response, setResponse] = useState([]);
+  const [page, setPage] = useState(1);
+  const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const handleSearch = async (inputValue) => {
     try {
       setResponse([]);
+      setPage(1);
+      setModal(false);
       setError(false);
       setLoading(true);
       const request = await galleryRequest(inputValue);
@@ -35,9 +39,9 @@ function App() {
       <SearchBar onSubmit={handleSearch} />
       {loading && <Loader />}
       {error && <ErrorMessage />}
-      <ImageGallery servResponse={response} />
-      {response.length > 0 && <LoadMoreBtn />}
-      <ImageModal />
+      <ImageGallery servResponse={response} cardClick={setModal} />
+      {response.length > 0 && <LoadMoreBtn changePage={setPage} page={page} />}
+      <ImageModal open={modal} setOpen={setModal} />
     </>
   );
 }

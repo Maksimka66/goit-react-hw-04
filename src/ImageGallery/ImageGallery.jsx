@@ -1,10 +1,12 @@
 import ImageCard from "../ImageCard/ImageCard";
 
-export default function ImageGallery({ servResponse }) {
+import css from "./ImageGallery.module.css";
+
+export default function ImageGallery({ servResponse, cardClick }) {
   return (
-    <ul>
+    <ul className={css.imageList}>
       {servResponse.map((photo) => (
-        <li key={photo.id}>
+        <li onClick={cardClick} key={photo.id}>
           <ImageCard
             path={photo.urls.small}
             description={photo.alt_description}

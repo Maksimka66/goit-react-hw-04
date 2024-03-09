@@ -1,0 +1,8 @@
+.headerForm {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: flex-start;
+  /* background-color: purple; */
+  width: 100%;
+}
