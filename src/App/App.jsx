@@ -21,12 +21,12 @@ function App() {
   const handleSearch = async (inputValue) => {
     try {
       setResponse([]);
-      setPage(1);
       setModal(false);
       setError(false);
       setLoading(true);
-      const request = await galleryRequest(inputValue);
+      const request = await galleryRequest(inputValue, page);
       setResponse(request.results);
+      setPage((prevPage) => prevPage + 1);
     } catch (error) {
       setError(true);
     } finally {
@@ -40,7 +40,13 @@ function App() {
       {loading && <Loader />}
       {error && <ErrorMessage />}
       <ImageGallery servResponse={response} cardClick={setModal} />
-      {response.length > 0 && <LoadMoreBtn changePage={setPage} page={page} />}
+      {response.length > 0 && (
+        <LoadMoreBtn
+          onLoadMore={handleSearch}
+          hasMore={true}
+          currentPage={page}
+        />
+      )}
       <ImageModal open={modal} setOpen={setModal} />
     </>
   );
