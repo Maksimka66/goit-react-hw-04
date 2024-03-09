@@ -15,18 +15,23 @@ export default function SearchBar({ onSubmit }) {
   };
 
   return (
-    <header className={css.headerForm}>
-      <form onSubmit={submitForm}>
-        <input
-          type="text"
-          name="search"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-        />
-        <button type="submit">Search</button>
-      </form>
-      <Toaster position="top-right" reverseOrder={false} />
-    </header>
+    <div className={css.containerForm}>
+      <header className={css.headerForm}>
+        <form className={css.form} onSubmit={submitForm}>
+          <input
+            className={css.inputForm}
+            type="text"
+            name="search"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+          />
+          <button className={css.submitBtn} type="submit">
+            Search
+          </button>
+        </form>
+        <Toaster position="top-right" reverseOrder={false} />
+      </header>
+    </div>
   );
 }
