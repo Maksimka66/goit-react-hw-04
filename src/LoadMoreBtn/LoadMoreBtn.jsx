@@ -3,8 +3,10 @@ export default function LoadMoreBtn({ onLoadMore, hasMore, currentPage }) {
     onLoadMore(currentPage + 1);
   };
   return (
-    <button onClick={handleClick} disabled={!hasMore} type="button">
-      Load more
-    </button>
+    hasMore && (
+      <button onClick={handleClick} type="button">
+        Load more
+      </button>
+    )
   );
 }
