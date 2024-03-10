@@ -64,8 +64,6 @@ function App() {
     setModal(true);
   };
 
-  console.log(query);
-
   return (
     <>
       <SearchBar onSubmit={handleSearch} />
@@ -78,7 +76,7 @@ function App() {
       <ImageModal
         modalIsOpen={modal}
         setIsOpen={setModal}
-        images={selectedImageUrl}
+        imgUrl={selectedImageUrl}
       />
     </>
   );
