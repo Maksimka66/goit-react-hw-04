@@ -21,8 +21,14 @@ function App() {
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [selectedImageUrl, setSelectedImageUrl] = useState("");
 
   const handleSearch = async (inputValue) => {
+    if (inputValue.trim() === "") {
+      setResponse([]);
+      return;
+    }
+
     setQuery(inputValue);
     setResponse([]);
     setModal(false);
@@ -53,16 +59,27 @@ function App() {
     fetchImages();
   }, [query, page]);
 
+  const handleImageClick = (imageUrl) => {
+    setSelectedImageUrl(imageUrl);
+    setModal(true);
+  };
+
+  console.log(query);
+
   return (
     <>
       <SearchBar onSubmit={handleSearch} />
       {error && <ErrorMessage />}
-      <ImageGallery servResponse={response} cardClick={setModal} />
+      <ImageGallery servResponse={response} cardClick={handleImageClick} />
       {response.length > 0 && (
         <LoadMoreBtn onLoadMore={handleClick} currentPage={page} />
       )}
       {loading && <Loader />}
-      <ImageModal open={modal} setOpen={setModal} />
+      <ImageModal
+        modalIsOpen={modal}
+        setIsOpen={setModal}
+        images={selectedImageUrl}
+      />
     </>
   );
 }

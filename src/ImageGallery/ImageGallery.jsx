@@ -10,6 +10,7 @@ export default function ImageGallery({ servResponse, cardClick }) {
           <ImageCard
             path={photo.urls.small}
             description={photo.alt_description}
+            onClick={() => cardClick(photo.urls.regular)}
           />
         </li>
       ))}

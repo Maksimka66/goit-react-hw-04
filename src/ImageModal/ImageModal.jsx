@@ -1,4 +1,3 @@
-import ImageCard from "../ImageCard/ImageCard";
 import Modal from "react-modal";
 
 const customStyles = {
@@ -12,16 +11,18 @@ const customStyles = {
   },
 };
 
-export default function ImageModal({ open, setOpen }) {
-  function openModal() {
-    setOpen(true);
-  }
-
+export default function ImageModal({ modalIsOpen, setIsOpen, imgUrl }) {
   function closeModal() {
-    setOpen(false);
+    setIsOpen(false);
   }
 
   return (
-    <Modal isOpen={open} style={customStyles} onRequestClose={closeModal} />
+    <Modal
+      isOpen={modalIsOpen}
+      style={customStyles}
+      onRequestClose={closeModal}
+    >
+      <img src={imgUrl} alt="Image" />
+    </Modal>
   );
 }
