@@ -12,29 +12,37 @@ import { useState, useEffect } from "react";
 
 import "./App.css";
 
+Modal.setAppElement("#root");
+
 function App() {
   const [response, setResponse] = useState([]);
-  const [page, setPage] = useState(0);
+  const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  Modal.setAppElement("#root");
-
   const handleSearch = async (inputValue) => {
-    setResponse([inputValue]);
+    setQuery(inputValue);
+    setResponse([]);
+    setModal(false);
+    setError(false);
+  };
+
+  const handleClick = () => {
+    setPage((page) => page + 1);
   };
 
   useEffect(() => {
-    const fetchImages = async (inputValue) => {
+    const fetchImages = async () => {
+      if (!query) {
+        return;
+      }
+
       try {
-        setResponse([]);
-        setModal(false);
-        setError(false);
         setLoading(true);
-        const request = await galleryRequest(inputValue, page);
-        setResponse(request.results);
-        setPage((prevPage) => prevPage + 1);
+        const request = await galleryRequest(query, page);
+        setResponse((prevResponse) => [...prevResponse, ...request.results]);
       } catch (error) {
         setError(true);
       } finally {
@@ -43,21 +51,17 @@ function App() {
     };
 
     fetchImages();
-  }, [response, page]);
+  }, [query, page]);
 
   return (
     <>
       <SearchBar onSubmit={handleSearch} />
-      {loading && <Loader />}
       {error && <ErrorMessage />}
       <ImageGallery servResponse={response} cardClick={setModal} />
       {response.length > 0 && (
-        <LoadMoreBtn
-          onLoadMore={handleSearch}
-          hasMore={true}
-          currentPage={page}
-        />
+        <LoadMoreBtn onLoadMore={handleClick} currentPage={page} />
       )}
+      {loading && <Loader />}
       <ImageModal open={modal} setOpen={setModal} />
     </>
   );

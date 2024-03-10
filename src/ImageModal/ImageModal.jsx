@@ -12,8 +12,6 @@ const customStyles = {
   },
 };
 
-Modal.setAppElement(ImageCard);
-
 export default function ImageModal({ open, setOpen }) {
   function openModal() {
     setOpen(true);

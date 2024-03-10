@@ -10,6 +10,5 @@ export default async function galleryRequest(query, page) {
   const response = await axios.get(
     `https://api.unsplash.com/search/photos/?${params}`
   );
-  console.log(response.data);
   return response.data;
 }

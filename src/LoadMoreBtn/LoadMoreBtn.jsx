@@ -1,12 +1,10 @@
-export default function LoadMoreBtn({ onLoadMore, hasMore, currentPage }) {
+export default function LoadMoreBtn({ onLoadMore, currentPage }) {
   const handleClick = () => {
     onLoadMore(currentPage + 1);
   };
   return (
-    hasMore && (
-      <button onClick={handleClick} type="button">
-        Load more
-      </button>
-    )
+    <button onClick={handleClick} type="button">
+      Load more
+    </button>
   );
 }
