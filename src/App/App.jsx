@@ -21,7 +21,8 @@ function App() {
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [selectedImageUrl, setSelectedImageUrl] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [maxPhotos, setMaxPhotos] = useState(null);
 
   const handleSearch = async (inputValue) => {
     if (inputValue.trim() === "") {
@@ -49,6 +50,7 @@ function App() {
         setLoading(true);
         const request = await galleryRequest(query, page);
         setResponse((prevResponse) => [...prevResponse, ...request.results]);
+        setMaxPhotos(request.total);
       } catch (error) {
         setError(true);
       } finally {
@@ -59,8 +61,8 @@ function App() {
     fetchImages();
   }, [query, page]);
 
-  const handleImageClick = (imageUrl) => {
-    setSelectedImageUrl(imageUrl);
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
     setModal(true);
   };
 
@@ -69,14 +71,14 @@ function App() {
       <SearchBar onSubmit={handleSearch} />
       {error && <ErrorMessage />}
       <ImageGallery servResponse={response} cardClick={handleImageClick} />
-      {response.length > 0 && (
+      {response.length > 0 && response.length < maxPhotos && (
         <LoadMoreBtn onLoadMore={handleClick} currentPage={page} />
       )}
       {loading && <Loader />}
       <ImageModal
         modalIsOpen={modal}
         setIsOpen={setModal}
-        imgUrl={selectedImageUrl}
+        img={selectedImage}
       />
     </>
   );

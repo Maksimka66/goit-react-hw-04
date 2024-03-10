@@ -11,7 +11,7 @@ const customStyles = {
   },
 };
 
-export default function ImageModal({ modalIsOpen, setIsOpen, imgUrl }) {
+export default function ImageModal({ modalIsOpen, setIsOpen, img }) {
   function closeModal() {
     setIsOpen(false);
   }
@@ -22,7 +22,7 @@ export default function ImageModal({ modalIsOpen, setIsOpen, imgUrl }) {
       style={customStyles}
       onRequestClose={closeModal}
     >
-      <img src={imgUrl} alt="Image" />
+      {img && <img src={img} alt="Selected" />}
     </Modal>
   );
 }
