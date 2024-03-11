@@ -6,12 +6,11 @@ export default function ImageGallery({ servResponse, cardClick }) {
   return (
     <ul className={css.imageList}>
       {servResponse.map((photo) => (
-        <li onClick={cardClick} key={photo.id}>
+        <li onClick={() => cardClick(photo)} key={photo.id}>
           <ImageCard
             path={photo.urls.small}
             description={photo.alt_description}
-            secondPath={photo.urls.regular}
-            cardClick={() => cardClick(photo.urls.regular)}
+            cardClick={cardClick}
           />
         </li>
       ))}

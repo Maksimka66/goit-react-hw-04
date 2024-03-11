@@ -78,7 +78,7 @@ function App() {
       <ImageModal
         modalIsOpen={modal}
         setIsOpen={setModal}
-        img={selectedImage}
+        image={selectedImage}
       />
     </>
   );

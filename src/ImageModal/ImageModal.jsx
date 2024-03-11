@@ -1,5 +1,7 @@
 import Modal from "react-modal";
 
+import css from "./ImageModal.module.css";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -8,21 +10,28 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    width: "80%",
+    height: "",
   },
 };
 
-export default function ImageModal({ modalIsOpen, setIsOpen, img }) {
+export default function ImageModal({ modalIsOpen, setIsOpen, image }) {
   function closeModal() {
     setIsOpen(false);
   }
-
   return (
     <Modal
       isOpen={modalIsOpen}
       style={customStyles}
       onRequestClose={closeModal}
     >
-      {img && <img src={img} alt="Selected" />}
+      {image && image.urls && image.urls.regular && (
+        <img
+          className={css.modalImage}
+          src={image.urls.regular}
+          alt={image.description}
+        />
+      )}
     </Modal>
   );
 }
