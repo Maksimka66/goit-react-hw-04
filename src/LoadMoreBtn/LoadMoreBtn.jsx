@@ -1,15 +1,8 @@
 import css from "./LoadMoreBtn.module.css";
 
-export default function LoadMoreBtn({ onLoadMore, currentPage, maxPhotos }) {
-  const handleClick = () => {
-    if (currentPage > maxPhotos) {
-      return;
-    }
-    onLoadMore(currentPage + 1);
-  };
-
+export default function LoadMoreBtn({ onLoadMore }) {
   return (
-    <button className={css.btnLoadMore} onClick={handleClick} type="button">
+    <button className={css.btnLoadMore} onClick={onLoadMore} type="button">
       Load more
     </button>
   );

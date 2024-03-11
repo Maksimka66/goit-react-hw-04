@@ -36,10 +36,6 @@ function App() {
     setPage(1);
   };
 
-  const handleClick = () => {
-    setPage((page) => page + 1);
-  };
-
   useEffect(() => {
     const fetchImages = async () => {
       if (!query) {
@@ -60,6 +56,10 @@ function App() {
 
     fetchImages();
   }, [query, page]);
+
+  const handleClick = () => {
+    setPage((page) => page + 1);
+  };
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
