@@ -29,11 +29,11 @@ function App() {
       setResponse([]);
       return;
     }
-
     setQuery(inputValue);
     setResponse([]);
     setModal(false);
     setError(false);
+    setPage(1);
   };
 
   const handleClick = () => {
