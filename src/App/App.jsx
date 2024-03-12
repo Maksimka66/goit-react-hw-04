@@ -66,6 +66,7 @@ function App() {
     setModal(true);
   };
 
+  console.log(selectedImage);
   return (
     <>
       <SearchBar onSubmit={handleSearch} />

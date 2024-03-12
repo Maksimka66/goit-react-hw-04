@@ -19,6 +19,7 @@ export default function ImageModal({ modalIsOpen, setIsOpen, image }) {
   function closeModal() {
     setIsOpen(false);
   }
+  console.log(image);
   return (
     <Modal
       isOpen={modalIsOpen}
