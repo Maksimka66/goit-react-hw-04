@@ -29,7 +29,11 @@ export default function ImageModal({ modalIsOpen, setIsOpen, image }) {
       onRequestClose={closeModal}
     >
       {modalIsOpen && (
-        <img className={css.modalImage} src={image} alt={image.description} />
+        <img
+          className={css.modalImage}
+          src={image.secondPath}
+          alt={image.description}
+        />
       )}
     </Modal>
   );

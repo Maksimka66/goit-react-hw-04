@@ -12,7 +12,7 @@ export default function ImageCard({
         className={css.photo}
         src={path}
         alt={description}
-        onClick={() => cardClick(secondPath)}
+        onClick={() => cardClick({ secondPath, description })}
       />
     </div>
   );
