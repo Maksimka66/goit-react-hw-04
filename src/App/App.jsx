@@ -5,14 +5,11 @@ import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../components/ImageModal/ImageModal";
 
-import Modal from "react-modal";
 import galleryRequest from "../articles-api";
 
 import { useState, useEffect } from "react";
 
 import "./App.css";
-
-Modal.setAppElement("#root");
 
 function App() {
   const [response, setResponse] = useState([]);
